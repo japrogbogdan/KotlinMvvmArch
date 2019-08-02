@@ -30,4 +30,5 @@ class OneFragmentViewModel : MvvmViewModel() {
         Log.d("ViewModel", "OneFragmentViewModel cleared")
         super.onCleared()
     }
+
 }
