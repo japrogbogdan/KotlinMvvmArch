@@ -5,9 +5,10 @@ import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.annotation.CallSuper
+import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.Fragment
 
-open class MvvmFragment : Fragment() {
+open class MvvmFragment : AppCompatDialogFragment() {
 
     lateinit var baseFragmentCommander: BaseFragmentCommander
 
@@ -45,10 +46,5 @@ open class MvvmFragment : Fragment() {
         context?.let {
             if (it is Commander) function(it)
         }
-    }
-
-    interface BaseFragmentCommander {
-        fun showProgressDialog()
-        fun hideProgressDialog()
     }
 }
