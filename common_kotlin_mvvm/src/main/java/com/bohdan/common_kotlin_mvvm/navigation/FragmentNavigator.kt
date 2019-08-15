@@ -5,7 +5,7 @@ import com.bohdan.common_kotlin_mvvm.R
 import com.bohdan.common_kotlin_mvvm.ui.activity.MvvmActivity
 import com.bohdan.common_kotlin_mvvm.ui.fragment.MvvmViewModelFragment
 
-open class MvvmFragmentNavigator(private val activity: MvvmActivity<*, *>) {
+open class MvvmFragmentNavigator(protected val activity: MvvmActivity<*, *>) {
 
     fun replaceTransaction(fragment: MvvmViewModelFragment<*>) {
         activity.supportFragmentManager
