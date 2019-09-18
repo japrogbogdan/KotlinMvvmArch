@@ -7,7 +7,8 @@ import kotlinx.coroutines.*
 
 open class MvvmViewModel : ViewModel(), MVVMLifecycleInterface {
 
-    private var viewModelJob: Job? = null
+    protected var viewModelJob: Job? = null
+    private val parentJob = Job()
 
     val showLoading = MutableLiveData<Unit>()
     val hideLoading = MutableLiveData<Unit>()
@@ -21,14 +22,14 @@ open class MvvmViewModel : ViewModel(), MVVMLifecycleInterface {
     }
 
     fun io(work: suspend (() -> Unit)) {
-        viewModelJob = CoroutineScope(Dispatchers.IO).launch {
+        viewModelJob = CoroutineScope(parentJob + Dispatchers.IO).launch {
             work()
         }
     }
 
     fun <T : Any> ioThenMain(work: suspend (() -> T), callback: ((T) -> Unit)) {
-        viewModelJob = CoroutineScope(Dispatchers.Main).launch {
-            val data = CoroutineScope(Dispatchers.IO).async rt@{
+        viewModelJob = CoroutineScope(parentJob + Dispatchers.Main).launch {
+            val data = CoroutineScope(parentJob + Dispatchers.IO).async rt@{
                 return@rt work()
             }.await()
             callback(data)
