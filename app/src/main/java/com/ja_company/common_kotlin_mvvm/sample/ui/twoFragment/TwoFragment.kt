@@ -1,6 +1,7 @@
 package com.ja_company.common_kotlin_mvvm.sample.ui.twoFragment
 
 import android.os.Bundle
+import com.bohdan.common_kotlin_mvvm.ui.fragment.BaseFragmentCommander
 import com.bohdan.common_kotlin_mvvm.ui.fragment.MvvmToolbarViewModelFragment
 import com.ja_company.common_kotlin_mvvm.R
 import com.ja_company.common_kotlin_mvvm.sample.ui.MainToolbarWrapper
